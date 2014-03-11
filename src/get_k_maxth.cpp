@@ -9,13 +9,13 @@
  *    
  *  
  */
-#include "../common_header.h"
+#include "./common_header.h"
 #include <sstream>
-#define TRAINING_SET "../dataset/movielens/u1.base"
+#define TRAINING_SET "../input/movielens/u1.base"
 #define RATE_SP "\t"  //rate Separator
 #define USER_NUM 943 //10K:943 1M:6040
 #define ITEM_NUM 1682 //10K:1682 1M:3900
-#define SIM_FILE "user_sim"
+#define SIM_FILE "../output/user_sim"
 
 //namespace userCF{
     vector<float> mean_rate(USER_NUM+1,0.0);         //store the mean rate of every user(用来存储每个user的平均打分)
@@ -40,7 +40,7 @@
 //		ss << K;
 //		string tmp_k;
 //		ss >> tmp_k;
-        string dst = string("user_")+string(tmp_k)+string("_max");
+        string dst = string("../output/user_")+string(tmp_k)+string("_max");
         std::ifstream from(SIM_FILE);
         ofstream to(dst.c_str());
         if (!from.is_open()) {

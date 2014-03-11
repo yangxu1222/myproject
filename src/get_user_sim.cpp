@@ -19,6 +19,7 @@
 #define RATE_SP "\t"  //rate Separator
 #define USER_NUM 943 //10K:943 1M:6040
 #define ITEM_NUM 1682 //10K:1682 1M:3900
+#define USER_SIM_RET "../output/user_sim"
 
 //namespace userCF{
 vector<float> mean_rate(USER_NUM+1,0.0);         //store the mean rate of every user 用来存储每个user的评分的平均打分
@@ -61,8 +62,8 @@ void get_sim_matrix(const char* source="movielens")
     }
 
     //output the simean_ratelarity matrix
-	string out_put_file = string("user_sim");
-    ofstream outputw(out_put_file.c_str());
+	//string out_put_file = string("user_sim");
+    ofstream outputw(USER_SIM_RET);
     for(i=1; i < USER_NUM+1; ++i){
 		outputw <<i<<":"<<endl;
 		for(j=1; j < USER_NUM+1; ++j) {
