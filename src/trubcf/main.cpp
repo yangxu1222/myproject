@@ -6,7 +6,7 @@
  ************************************************************************/
 
 #include<iostream>
-#include "Ubcf.h"
+#include "Trubcf.h"
 
 //#include "common.h"
 
@@ -36,7 +36,7 @@ void model(int k_num)
 	sprintf(buffer,"%d",k_num);
 	const string k_max_file = string("/home/yangxu/work/myproject/output/user_") + string(buffer) + string("_max");
 	
-	Ubcf rec; 
+	Trubcf rec; 
 	cout << "begin initialization" << endl;
 	rec.load_sim_matrix(s, USER_SIM);               //load sim matrix
 	cout << "load_sim finished" << endl;
@@ -49,8 +49,15 @@ void model(int k_num)
 //    mean = set_mean_rating(USER_NUM,rate_matrix); //calculate the mean ????
 	
 	mean_rate = rec.get_user_mean(rate_matrix);         //calculate the mean of each item
-    cout <<"begin MAE " << endl; 
-	rec.mae = rec.MAEProbe(probe_row,k_num,rate_matrix,s,kmax);
+	cout << "len of mean_rate:" << mean_rate.size() <<endl;
+	//map<float,vector<float> > trust = rec.trust_mode(rate_matrix,s,mean_rate);
+	
+	cout <<"begin cal trust " << endl; 
+	map<int,float> trust = rec.cal_trust(rate_matrix,s,mean_rate);
+    cout <<"end cal trust" << endl;
+	
+	cout <<"begin MAE " << endl; 
+	rec.mae = rec.MAEProbe(probe_row,k_num,rate_matrix,s,kmax,trust);
     cout <<"end MAE" << endl;
     return;
 }

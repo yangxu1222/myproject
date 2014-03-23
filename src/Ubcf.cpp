@@ -143,9 +143,9 @@ void Ubcf::load_sim_matrix(float s[USER_NUM+1][USER_NUM+1], const char* sim_file
                 exit(1);
             }
             ++user_num;     
-            if(user_num % 942 ==0) {
-                cout<<"read item "<<user_num<<" sucessfully!"<<endl;
-            }
+//            if(user_num % 943 ==0) {
+//               cout<<"read item "<<user_num<<" sucessfully!"<<endl;
+//          }
             continue;
         }
         if(str_temp.length() < 3)continue;
@@ -165,7 +165,7 @@ void Ubcf::load_sim_matrix(float s[USER_NUM+1][USER_NUM+1], const char* sim_file
         s[user_i][user_j] = sim;
     }
     from.close();
-    cout<<"end load training rate!"<<endl;
+    cout<<"end load user_sim finished!"<<endl;
 }
 
 //load k-max similarity value from file

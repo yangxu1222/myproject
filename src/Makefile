@@ -8,4 +8,4 @@ Ubcf.o: Ubcf.cpp
 	g++ -c Ubcf.cpp
 
 clean:
-	rm ubcf $(objects)
+	rm main main.o Ubcf.o
